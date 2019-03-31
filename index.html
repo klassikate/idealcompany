@@ -93,7 +93,7 @@ li.list>ul{
         <ul>
             <li class="list"> Компания
                 <ul>
-                <li>О нас</li>
+                <li id="about">О нас</li>
                 <li> Планы и цели</li>
                 <li> Сотрудники и контакты</li>
                 </ul>
@@ -133,12 +133,19 @@ li.list>ul{
    
 </header>
 <div class="main">
-   
+   <div id="box"></div>
 </div>
 
 <footer id="footer">
     
 </footer>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#about").click(function(){
+        $("#box").load("about.html");
+    });
+});
+</script>
 	<script src="idealcompany/scripts.min.js"></script>
 	<script src="idealcompany/fotorama/fotorama.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
