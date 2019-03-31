@@ -165,20 +165,10 @@ li.list>ul{
     
 </footer>
 <script>
-(function($) {
-  $(function() {
-    $("ul.tabs__caption").on("click", "li:not(.active)", function() {
-      $(this)
-        .addClass("active")
-        .siblings()
-        .removeClass("active")
-        .closest("div.tabs")
-        .find("div.tabs__content")
-        .removeClass("active")
-        .eq($(this).index())
-        .addClass("active");
-    });
-  });
+$('ul.tabs__caption').on('click', 'li:not(.active)', function() {
+$(this)
+.addClass('active').siblings().removeClass('active')
+.closest('div.tabs').find('div.tabs__content').removeClass('active').eq($(this).index()).addClass('active');
 });
 </script>	
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
