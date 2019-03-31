@@ -35,6 +35,9 @@ header{
 	padding: 20px 0px;
 	
 }
+header>img{
+	height: 90px;
+}
 h1 {
 	font-size: 20px;
     text-transform: uppercase;
@@ -57,6 +60,12 @@ li.list{
 font-weight: bold;
 color: #5a5a5a;
 }
+li.list::first-child{
+	padding-left: 0px;
+}
+li.list::last-child{
+	padding-right: 0px;
+}
 li.list>ul{
     font-size: 14px;
     padding: 15px 0;
@@ -67,10 +76,10 @@ li.list>ul{
 	<header id="header">
     <div class="container">
         <div class="row">
-            <div class="col-3">
+            <div class="col-4">
 		    <img src="Logotip_black_and_red_520.png">
             </div>
-            <div class="col-9">
+            <div class="col-8">
 		    <h1>Корпоративный портал</h1>
             </div>
         </div>
