@@ -75,30 +75,15 @@ li.list>ul{
 	color: black;
 }
 
-#tabs .tab {
-    cursor: pointer;
-    position: relative;
-    z-index:5;
-}
-#tabs .whiteborder {
-       color: #d24a43;
-    font-weight: bold;
-}
-#tabs .tabContent {
-    width: 300px;
-    height: 60px;
-    border: 1px solid #707070;
-    position: relative;
-    top: -1px; 
-    z-index:1;
-    padding: 10px;
-    border-radius: 0 0 3px 3px
-}
-#tabs .hide {
-    display: none;
-}
-#tabs .show {
-    display: block;
+#load {
+ display: none;
+ position: absolute;
+ right: 10px;
+ top: 10px;
+ background: url(images/ajax-loader.gif);
+ width: 43px;
+ height: 11px;
+ text-indent: -9999em;
 }
 	</style>
 	<header id="header">
@@ -116,13 +101,10 @@ li.list>ul{
                  <nav id="nav">
         <ul>
             <li class="list"> Компания
-                <ul id="tabs">
-                <li class="tab whiteborder">О нас</li>
-                <li class="tab"> Планы и цели</li>
-                <li class="tab"> Сотрудники и контакты</li>
-		  	<div class="tabContent">1</div>
-        	<div class="tabContent">2</div>
-        	<div class="tabContent">3</div>
+                <ul>
+                <li>О нас</li>
+                <li> Планы и цели</li>
+                <li> Сотрудники и контакты</li>
                 </ul>
             </li>
             
@@ -160,6 +142,19 @@ li.list>ul{
    
 </header>
 <div class="main">
+	 <div id="wrapper">
+    <h1>ajax ... nettuts</h1>
+    <ul id="nav">
+        <li>welcome</li>
+        <li>about</li>
+        <li>portfolio</li>
+        <li>contact</li>
+        <li>terms</li>
+    </ul>
+    <div id="content">
+        <h2>Welcome!</h2>
+        <p>Text</p>
+    </div>
 </div>
 
 <footer id="footer">
@@ -168,38 +163,39 @@ li.list>ul{
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script>
-var tab; // заголовок вкладки
-var tabContent; // блок содержащий контент вкладки
+$(document).ready(function() {
  
-window.onload=function() {
-    tabContent=document.getElementsByClassName('tabContent');
-    tab=document.getElementsByClassName('tab');
-    hideTabsContent(1);
-}
-function hideTabsContent(a) {
-    for (var i=a; i<tabContent.length; i++) {
-        tabContent[i].classList.remove('show');
-        tabContent[i].classList.add("hide");
-        tab[i].classList.remove('whiteborder');
-    }
-}
-
-document.getElementById('tabs').onclick= function (event) {
-    var target=event.target;
-    if (target.className=='tab') {
-       for (var i=0; i<tab.length; i++) {
-           if (target == tab[i]) {
-               showTabsContent(i);
-               break;
-}}}}
-function showTabsContent(b){
-    if (tabContent[b].classList.contains('hide')) {
-        hideTabsContent(0);
-        tab[b].classList.add('whiteborder');
-        tabContent[b].classList.remove('hide');
-        tabContent[b].classList.add('show');
-    }
-}
+ // Check for hash value in URL
+ var hash = window.location.hash.substr(1);
+ var href = $('#nav li a').each(function(){
+ var href = $(this).attr('href');
+ if(hash==href.substr(0,href.length-5)){
+ var toLoad = hash+'.html #content';
+ $('#content').load(toLoad)
+ } 
+ });
+ 
+ $('#nav li a').click(function(){
+ 
+ var toLoad = $(this).attr('href')+' #content';
+ $('#content').hide('fast',loadContent);
+ $('#load').remove();
+ $('#wrapper').append('<span id="load">LOADING...</span>');
+ $('#load').fadeIn('normal');
+ window.location.hash = $(this).attr('href').substr(0,$(this).attr('href').length-5);
+ function loadContent() {
+ $('#content').load(toLoad,'',showNewContent())
+ }
+ function showNewContent() {
+ $('#content').show('normal',hideLoader());
+ }
+ function hideLoader() {
+ $('#load').fadeOut('normal');
+ }
+ return false;
+ 
+ });
+});
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
