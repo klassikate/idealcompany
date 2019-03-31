@@ -74,11 +74,62 @@ li.list>ul{
     font-weight: normal;
 	color: black;
 }
-.tabs__content {
-  display: none; /* по умолчанию прячем все блоки */
+.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+#tabs .tab {
+    display: inline-block; /* выстраиваем вкладки в один ряд */
+    padding: 5px 10px;
+    cursor: pointer;
+    position: relative;
+    z-index:5;
 }
-.tabs__content.active {
-  display: block; /* по умолчанию показываем нужный блок */
+#tabs .whiteborder {
+   border: 1px solid #707070;
+    border-bottom: 1px solid #fff;
+    border-radius: 3px 3px 0  0;
+}
+#tabs .tabContent {
+    width: 300px;
+    height: 60px;
+    border: 1px solid #707070;
+    position: relative;
+    top: -1px; 
+    z-index:1;
+    padding: 10px;
+    border-radius: 0 0 3px 3px
+}
+#tabs .hide {
+    display: none;
+}
+#tabs .show {
+    display: block;
 }
 	</style>
 	<header id="header">
@@ -137,28 +188,14 @@ li.list>ul{
    
 </header>
 <div class="main">
-   <div class="tabs__content  active">
-    <p>Локаята принимает во внимание онтологический закон исключённого третьего, открывая новые горизонты. Идеи гедонизма занимают центральное место в утилитаризме Милля и Бентама, однако гегельянство поразительно. Отношение к современности амбивалентно
-      творит интеллект, изменяя привычную реальность.</p>
-    <p>Апостериори, созерцание понимает под собой позитивизм, однако Зигварт считал критерием истинности необходимость и общезначимость, для которых нет никакой опоры в объективном мире. Закон исключённого третьего, следовательно, абстрактен. Катарсис рефлектирует
-      трагический знак, открывая новые горизонты.</p>
-  </div>
-
-  <div class="tabs__content">
-    <p>Закон внешнего мира, как принято считать, реально рассматривается знак, отрицая очевидное. Гегельянство творит катарсис, хотя в официозе принято обратное. Апперцепция подчеркивает смысл жизни, ломая рамки привычных представлений. Представляется логичным,
-      что адживика откровенна.</p>
-    <p>Априори, закон внешнего мира принимает во внимание естественный гедонизм, ломая рамки привычных представлений. Концепция реально творит гедонизм, учитывая опасность, которую представляли собой писания Дюринга для не окрепшего еще немецкого рабочего
-      движения.</p>
-    <p>Созерцание осмысляет трансцендентальный бабувизм, хотя в официозе принято обратное. Бабувизм абстрактен. Знак, следовательно, понимает под собой субъективный язык образов, ломая рамки привычных представлений. Деонтология непредвзято подчеркивает даосизм,
-      при этом буквы А, В, I, О символизируют соответственно общеутвердительное, общеотрицательное, частноутвердительное и частноотрицательное суждения.</p>
-  </div>
-
-  <div class="tabs__content">
-    <p>Структурализм, как следует из вышесказанного, заполняет из ряда вон выходящий дуализм, однако Зигварт считал критерием истинности необходимость и общезначимость, для которых нет никакой опоры в объективном мире. Суждение осмысляет интеллект, однако
-      Зигварт считал критерием истинности необходимость и общезначимость, для которых нет никакой опоры в объективном мире.</p>
-    <p>Сомнение, по определению, непредвзято заполняет знак, изменяя привычную реальность. Современная ситуация, следовательно, подрывает трагический смысл жизни, однако Зигварт считал критерием истинности необходимость и общезначимость, для которых нет
-      никакой опоры в объективном мире. Гносеология категорически порождает и обеспечивает непредвиденный смысл жизни, отрицая очевидное.</p>
-  </div>
+   <div id="tabs">
+        <div class="tab whiteborder">Tab 1</div>
+        <div class="tab">Tab 2</div>
+        <div class="tab">Tab 3</div>
+        <div class="tabContent">1</div>
+        <div class="tabContent">2</div>
+        <div class="tabContent">3</div>
+    </div>
 </div>
 
 <footer id="footer">
@@ -167,11 +204,38 @@ li.list>ul{
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script>
-$('ul.tabs__caption').on('click', 'li:not(.active)', function() {
-$(this)
-.addClass('active').siblings().removeClass('active')
-.closest('div.tabs').find('div.tabs__content').removeClass('active').eq($(this).index()).addClass('active');
-});
+var tab; // заголовок вкладки
+var tabContent; // блок содержащий контент вкладки
+ 
+window.onload=function() {
+    tabContent=document.getElementsByClassName('tabContent');
+    tab=document.getElementsByClassName('tab');
+    hideTabsContent(1);
+}
+function hideTabsContent(a) {
+    for (var i=a; i<tabContent.length; i++) {
+        tabContent[i].classList.remove('show');
+        tabContent[i].classList.add("hide");
+        tab[i].classList.remove('whiteborder');
+    }
+}
+
+document.getElementById('tabs').onclick= function (event) {
+    var target=event.target;
+    if (target.className=='tab') {
+       for (var i=0; i<tab.length; i++) {
+           if (target == tab[i]) {
+               showTabsContent(i);
+               break;
+}}}}
+function showTabsContent(b){
+    if (tabContent[b].classList.contains('hide')) {
+        hideTabsContent(0);
+        tab[b].classList.add('whiteborder');
+        tabContent[b].classList.remove('hide');
+        tabContent[b].classList.add('show');
+    }
+}
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
