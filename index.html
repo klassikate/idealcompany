@@ -133,25 +133,12 @@ li.list>ul{
    
 </header>
 <div class="main">
-    <SELECT id="city" onChange="CityChange()">
-    <OPTION value="city_1">Москва</option>
-    <OPTION value="city_2">Киев</option>
-    <OPTION value="city_3">Минск</option>
-</SELECT>
-	<DIV id="city_1" style="display: none">Дом Правительства Российской Федерации</BR>г. Москва, Краснопресненская набережная, 2</DIV>
-<DIV id="city_2" style="display: none">Дом правительства Украины</BR>г. Киев, ул. Грушевского 12/2</DIV>
-<DIV id="city_3" style="display: none">Дом Правительства Республики Беларусь</BR>г. Минск, ул. Советская, 11</DIV>
+   
 </div>
-<DIV id="adress"></DIV>
+
 <footer id="footer">
     
 </footer>
-	<script>
-	function CityChange()
-{
-document.getElementById('adress').innerHTML = document.getElementById(document.getElementById('city').value).innerHTML
-};
-</script>
 	<script src="idealcompany/scripts.min.js"></script>
 	<script src="idealcompany/fotorama/fotorama.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
