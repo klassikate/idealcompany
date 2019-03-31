@@ -146,10 +146,12 @@ li.list>ul{
 <footer id="footer">
     
 </footer>
-	<script>function CityChange()
+	<script>
+	function CityChange()
 {
-$("#adress").html($("#city_"+$("#city").options[this.selectedIndex].value).html())
-}</script>
+document.getElementById('adress').innerHTML = document.getElementById(document.getElementById('city').value).innerHTML
+};
+</script>
 	<script src="idealcompany/scripts.min.js"></script>
 	<script src="idealcompany/fotorama/fotorama.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
